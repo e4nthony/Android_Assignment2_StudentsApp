@@ -132,14 +132,12 @@ public class MainActivity extends AppCompatActivity {
             }
             checkBox.setTag(position);
 
-
             // set references to fields in xml
             name_tv = convertView.findViewById(R.id.slist_row_name_tv); //reference
             id_tv = convertView.findViewById(R.id.slist_row_id_tv);
 
+            // initialize the fields in view for specific student
             Student student = data.get(position);
-
-            // initialize the fields in view
             name_tv.setText(student.getName());
             id_tv.setText(Integer.toString(student.getId()));
             checkBox.setChecked(student.isCbChecked());

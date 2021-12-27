@@ -7,19 +7,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
-    View my_XML_converted_to_View;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // set reference to main_list_view in activity_main.xml
+        ListView listView = findViewById(R.id.main_list_view);
+
+        // initialize adapter
+        MyAdapter adapter = new MyAdapter();
+
+        // connect adapter with listView
+        listView.setAdapter(adapter);
     }
 
+    /***
+     * can
+     */
     class MyAdapter extends BaseAdapter {
 
         @Override
@@ -47,24 +57,26 @@ public class MainActivity extends AppCompatActivity {
          */
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+
             if (convertView == null) {
 
                 // get Inflater
                 LayoutInflater inflater = getLayoutInflater();
 
                 // xml >> view , using inflater
-                my_XML_converted_to_View = inflater.inflate(R.layout.slist_row, null);
+                //(my_XML_converted_to_View)
+                convertView = inflater.inflate(R.layout.slist_row, null);
             }
 
-            // name references to fields in xml
-            TextView name_tv = my_XML_converted_to_View.findViewById(R.id.slist_row_name_tv); //reference
-            TextView id_tv = my_XML_converted_to_View.findViewById(R.id.slist_row_id_tv);
+            // set references to fields in xml
+            TextView name_tv = convertView.findViewById(R.id.slist_row_name_tv); //reference
+            TextView id_tv = convertView.findViewById(R.id.slist_row_id_tv);
 
             // initialize the fields in view
             name_tv.setText("examleName " + position);
             id_tv.setText("examleID " + position);
 
-            return my_XML_converted_to_View;
+            return convertView;
         }
     }
 }

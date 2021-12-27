@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         /***
          *
          * @param position - row number
-         * @param convertView
+         * @param convertView - old view to reuse if possible
          * @param parent
          * @return
          */

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    static private int STUDENTS_COUNT = 15;
+    private final int STUDENTS_COUNT = 15;
 
     private List<Student> data = new LinkedList<Student>();
 
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             //return 0;
-            return STUDENTS_COUNT;
+            return data.size();
         }
 
         @Override
@@ -112,10 +113,14 @@ public class MainActivity extends AppCompatActivity {
             // set references to fields in xml
             TextView name_tv = convertView.findViewById(R.id.slist_row_name_tv); //reference
             TextView id_tv = convertView.findViewById(R.id.slist_row_id_tv);
+            CheckBox checkBox = convertView.findViewById(R.id.slist_row_checkbox_cb);
+
+            Student student = data.get(position);
 
             // initialize the fields in view
-            name_tv.setText("examleName " + position);
-            id_tv.setText("examleID " + position);
+            name_tv.setText(student.getName());
+            id_tv.setText(Integer.toString(student.getId()));
+            checkBox.setChecked(student.isCbChecked());
 
             return convertView;
         }

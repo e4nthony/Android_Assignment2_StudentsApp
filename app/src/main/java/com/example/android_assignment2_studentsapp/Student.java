@@ -21,11 +21,11 @@ public class Student {
         this.id = id;
     }
 
-    public boolean isCb() {
+    public boolean isCbChecked() {
         return cb;
     }
 
-    public void setCb(boolean cb) {
+    public void setCbChecked(boolean cb) {
         this.cb = cb;
     }
 

@@ -99,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
          */
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+            TextView name_tv;
+            TextView id_tv;
+            CheckBox checkBox;
 
             if (convertView == null) {
 
@@ -108,12 +111,26 @@ public class MainActivity extends AppCompatActivity {
                 // xml >> view , using inflater
                 //(my_XML_converted_to_View)
                 convertView = inflater.inflate(R.layout.slist_row, null);
+
+                checkBox = convertView.findViewById(R.id.slist_row_checkbox_cb);
+                // checkBox Listener
+                checkBox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("TAG", "checkBox clicked on row: " + checkBox.getTag().toString());
+
+                    }
+                });
             }
+            else{
+                checkBox = convertView.findViewById(R.id.slist_row_checkbox_cb);
+            }
+            checkBox.setTag(position);
+
 
             // set references to fields in xml
-            TextView name_tv = convertView.findViewById(R.id.slist_row_name_tv); //reference
-            TextView id_tv = convertView.findViewById(R.id.slist_row_id_tv);
-            CheckBox checkBox = convertView.findViewById(R.id.slist_row_checkbox_cb);
+            name_tv = convertView.findViewById(R.id.slist_row_name_tv); //reference
+            id_tv = convertView.findViewById(R.id.slist_row_id_tv);
 
             Student student = data.get(position);
 

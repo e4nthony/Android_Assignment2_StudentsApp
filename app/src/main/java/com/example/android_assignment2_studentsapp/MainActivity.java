@@ -3,9 +3,11 @@ package com.example.android_assignment2_studentsapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,8 +28,24 @@ public class MainActivity extends AppCompatActivity {
         // connect adapter with listView
         listView.setAdapter(adapter);
 
+        //----------
 
-    }
+        // Click Listener
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /***
+             * @param parent
+             * @param view
+             * @param position - clicked row number
+             * @param id -  [ getting from MyAdapter.getItemId() ]
+             */
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("TAG", "Row clicked: " + position);
+            }
+        });
+
+    }//onCreate end
+
 
     /***
      * returns to list every prepared row including element's params.
@@ -51,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         /***
-         *
          * @param position - row number
          * @param convertView - old view to reuse if possible
          * @param parent

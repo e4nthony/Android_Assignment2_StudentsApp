@@ -9,10 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.android_assignment2_studentsapp.model.Model;
+
+import java.util.LinkedList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("TAG", "Row clicked: " + position);
             }
         });
-
     }//onCreate end
 
 
@@ -55,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             //return 0;
-            return 15;
+            return Model.getInstance().getSize();
         }
 
         @Override
@@ -76,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
          */
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+            TextView name_tv;
+            TextView id_tv;
+            CheckBox checkBox;
 
             if (convertView == null) {
 
@@ -85,15 +95,36 @@ public class MainActivity extends AppCompatActivity {
                 // xml >> view , using inflater
                 //(my_XML_converted_to_View)
                 convertView = inflater.inflate(R.layout.slist_row, null);
+
+                checkBox = convertView.findViewById(R.id.slist_row_checkbox_cb);
+                // checkBox Listener
+                checkBox.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String cb_StringTag = checkBox.getTag().toString();
+                        Log.d("TAG", "checkBox clicked on row: " + cb_StringTag);
+
+                        int checkBox_position = Integer.parseInt(cb_StringTag);
+                        Student student =  Model.getInstance().getData().get(checkBox_position); //get linked student
+
+                        student.setCbChecked(checkBox.isChecked());
+                    }
+                });
             }
+            else{
+                checkBox = convertView.findViewById(R.id.slist_row_checkbox_cb);
+            }
+            checkBox.setTag(position);
 
             // set references to fields in xml
-            TextView name_tv = convertView.findViewById(R.id.slist_row_name_tv); //reference
-            TextView id_tv = convertView.findViewById(R.id.slist_row_id_tv);
+            name_tv = convertView.findViewById(R.id.slist_row_name_tv); //reference
+            id_tv = convertView.findViewById(R.id.slist_row_id_tv);
 
-            // initialize the fields in view
-            name_tv.setText("examleName " + position);
-            id_tv.setText("examleID " + position);
+            // initialize the fields in view for specific student
+            Student student = Model.getInstance().getData().get(position);
+            name_tv.setText(student.getName());
+            id_tv.setText(Integer.toString(student.getId()));
+            checkBox.setChecked(student.isCbChecked());
 
             return convertView;
         }

@@ -13,15 +13,14 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.android_assignment2_studentsapp.model.Model;
+
 import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private final int STUDENTS_COUNT = 15;
-
-    private List<Student> data = new LinkedList<Student>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 student.setName("name_" + i);
                 //checkbox = false by default
 
-                data.add(student);
+                Model.getInstance().addNewStudent(student);
             }
         }
 
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             //return 0;
-            return data.size();
+            return Model.getInstance().getSize();
         }
 
         @Override
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("TAG", "checkBox clicked on row: " + cb_StringTag);
 
                         int checkBox_position = Integer.parseInt(cb_StringTag);
-                        Student student = data.get(checkBox_position); //get linked student
+                        Student student =  Model.getInstance().getData().get(checkBox_position); //get linked student
 
                         student.setCbChecked(checkBox.isChecked());
                     }
@@ -137,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             id_tv = convertView.findViewById(R.id.slist_row_id_tv);
 
             // initialize the fields in view for specific student
-            Student student = data.get(position);
+            Student student = Model.getInstance().getData().get(position);
             name_tv.setText(student.getName());
             id_tv.setText(Integer.toString(student.getId()));
             checkBox.setChecked(student.isCbChecked());

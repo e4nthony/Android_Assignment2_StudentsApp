@@ -20,7 +20,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final int STUDENTS_COUNT = 15;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,21 +51,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("TAG", "Row clicked: " + position);
             }
         });
-
-        // Student's Data Initialization
-        {
-            Student student; //temp
-
-            for (int i = 0; i < STUDENTS_COUNT; ++i) {
-                student = new Student();
-                student.setId(i);
-                student.setName("name_" + i);
-                //checkbox = false by default
-
-                Model.getInstance().addNewStudent(student);
-            }
-        }
-
     }//onCreate end
 
 

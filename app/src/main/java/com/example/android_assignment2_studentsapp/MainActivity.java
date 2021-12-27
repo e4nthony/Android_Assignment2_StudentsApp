@@ -117,8 +117,13 @@ public class MainActivity extends AppCompatActivity {
                 checkBox.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.d("TAG", "checkBox clicked on row: " + checkBox.getTag().toString());
+                        String cb_StringTag = checkBox.getTag().toString();
+                        Log.d("TAG", "checkBox clicked on row: " + cb_StringTag);
 
+                        int checkBox_position = Integer.parseInt(cb_StringTag);
+                        Student student = data.get(checkBox_position); //get linked student
+
+                        student.setCbChecked(checkBox.isChecked());
                     }
                 });
             }

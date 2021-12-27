@@ -12,9 +12,15 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
-    List<Student> data;
+    static private int STUDENTS_COUNT = 15;
+
+    private List<Student> data = new LinkedList<Student>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Student's Data Initialization
+        {
+            Student student; //temp
+
+            for (int i = 0; i < STUDENTS_COUNT; ++i) {
+                student = new Student();
+                student.setId(i);
+                student.setName("name_" + i);
+                //checkbox = false by default
+
+                data.add(student);
+            }
+        }
+
     }//onCreate end
 
 
@@ -57,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             //return 0;
-            return 15;
+            return STUDENTS_COUNT;
         }
 
         @Override

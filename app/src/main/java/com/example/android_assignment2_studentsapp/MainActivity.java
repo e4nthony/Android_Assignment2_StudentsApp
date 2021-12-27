@@ -25,10 +25,12 @@ public class MainActivity extends AppCompatActivity {
 
         // connect adapter with listView
         listView.setAdapter(adapter);
+
+
     }
 
     /***
-     * can
+     * returns to list every prepared row including element's params.
      */
     class MyAdapter extends BaseAdapter {
 

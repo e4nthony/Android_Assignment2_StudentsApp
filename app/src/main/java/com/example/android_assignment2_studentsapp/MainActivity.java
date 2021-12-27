@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 0;
+            //return 0;
+            return 15;
         }
 
         @Override

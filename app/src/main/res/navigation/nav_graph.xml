@@ -9,10 +9,55 @@
         android:id="@+id/feed_list_Fragment"
         android:name="com.example.android_assignment2_studentsapp.feed_list_Fragment"
         android:label="fragment_feed_list_"
-        tools:layout="@layout/fragment_feed_list_" />
+        tools:layout="@layout/fragment_feed_list_" >
+        <action
+            android:id="@+id/action_feed_list_Fragment_to_post_Fragment"
+            app:destination="@id/post_Fragment" />
+        <action
+            android:id="@+id/action_feed_list_Fragment_to_profile_Fragment"
+            app:destination="@id/profile_Fragment" />
+        <action
+            android:id="@+id/action_feed_list_Fragment_to_new_post_Fragment"
+            app:destination="@id/new_post_Fragment" />
+        <action
+            android:id="@+id/action_feed_list_Fragment_to_register_Fragment"
+            app:destination="@id/register_Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/post_Fragment"
         android:name="com.example.android_assignment2_studentsapp.post_Fragment"
         android:label="fragment_post_"
         tools:layout="@layout/fragment_post_" />
+    <fragment
+        android:id="@+id/profile_Fragment"
+        android:name="com.example.android_assignment2_studentsapp.Profile_Fragment"
+        android:label="fragment_profile_"
+        tools:layout="@layout/fragment_profile_" >
+        <action
+            android:id="@+id/action_profile_Fragment_to_edit_profile_Fragment"
+            app:destination="@id/edit_profile_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/new_post_Fragment"
+        android:name="com.example.android_assignment2_studentsapp.new_post_Fragment"
+        android:label="fragment_new_post_"
+        tools:layout="@layout/fragment_new_post_" />
+    <fragment
+        android:id="@+id/register_Fragment"
+        android:name="com.example.android_assignment2_studentsapp.register_Fragment"
+        android:label="fragment_register_"
+        tools:layout="@layout/fragment_register_" >
+        <action
+            android:id="@+id/action_register_Fragment_to_feed_list_Fragment"
+            app:destination="@id/feed_list_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/edit_profile_Fragment"
+        android:name="com.example.android_assignment2_studentsapp.edit_profile_Fragment"
+        android:label="fragment_edit_profile_"
+        tools:layout="@layout/fragment_edit_profile_" >
+        <action
+            android:id="@+id/action_edit_profile_Fragment_to_profile_Fragment"
+            app:destination="@id/profile_Fragment" />
+    </fragment>
 </navigation>
